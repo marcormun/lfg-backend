@@ -5,11 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Game extends Model
+class Message extends Model
 {
     use HasFactory;
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function parties()
     {
-        return $this->hasOne(Party::class);
+        return $this->belongsTo(Party::class);
     }
 }
