@@ -31,6 +31,8 @@ class AuthController extends Controller
         }
         $user = User::create([
             'name' => $request->input('name'),
+            'username' => $request->input('username'),
+            'steamUsername' => $request->input('steamUsername'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->password)
         ]);

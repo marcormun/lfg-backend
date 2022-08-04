@@ -36,7 +36,7 @@ Route::group(
     function() {
         Route::get('/parties', [PartyController::class, 'getAllParties']);
         Route::get('/parties/{id}', [PartyController::class, 'getPartybyId']);
-        Route::get('/parties/{id}', [PartyController::class, 'getPartybyGame']);
+        Route::get('/parties/game/{id}', [PartyController::class, 'getPartybyGame']);
         Route::post('/parties', [PartyController::class, 'createParty'])->middleware('jwt.auth');
         Route::put('/parties/{id}', [PartyController::class, 'updateParty'])->middleware('jwt.auth');
         Route::delete('/parties/{id}', [PartyController::class, 'deleteParty'])->middleware('jwt.auth');
