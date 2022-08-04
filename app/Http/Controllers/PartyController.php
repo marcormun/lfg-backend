@@ -172,4 +172,33 @@ class PartyController extends Controller
             ], 500);
         }
     }
+
+    public function getPartyByGameId($id)
+    {
+        try {
+            Log::info("Getting party with game id " . $id);
+            $party = Party::query()
+                ->where('game_id', $id)
+                ->get()
+                ->toArray();
+                if (!$party) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => "Game not found",
+                        'data' => $party
+                    ], 404);
+                }
+            return response()->json([
+                'success' => true,
+                'message' => "Get party by game id.",
+                'data' => $party
+            ]);
+        } catch (\Exception $exception) {
+            Log::error("Error getting parties: " . $exception->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => "Error getting party"
+            ], 500);
+        }
+    }
 }
