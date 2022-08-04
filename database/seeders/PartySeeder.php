@@ -18,16 +18,16 @@ class PartySeeder extends Seeder
         DB::table('parties')->insert([
             [
                 'name' => 'Sala1',
-                'game_id' => 31,
+                'game_id' => 1,
             ],[
                 'name' => 'Sala2',
-                'game_id' => 31,
+                'game_id' => 1,
             ],[
                 'name' => 'Sala3',
-                'game_id' => 41,
+                'game_id' => 11,
             ],[
                 'name' => 'Sala4',
-                'game_id' => 51,
+                'game_id' => 21,
             ]
         ]);
     }

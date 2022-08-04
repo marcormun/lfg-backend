@@ -18,10 +18,10 @@ class UserPartySeeder extends Seeder
         DB::table('user_party')->insert([
             [
                 'user_id' => 1,
-                'party_id' => 11
+                'party_id' => 1
             ],[
                 'user_id' => 11,
-                'party_id' => 11
+                'party_id' => 1
             ]
         ]);
     }
