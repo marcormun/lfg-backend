@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('message');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('from');
             $table->unsignedBigInteger('party_id');
+            $table->date('date');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('from')->references('id')->on('users');
             $table->foreign('party_id')->references('id')->on('parties');
         });
     }

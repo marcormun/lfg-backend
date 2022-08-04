@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PartyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,5 +29,16 @@ Route::group(
     function () {
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/me', [AuthController::class, 'me']);
+    }
+);
+Route::group(
+    [],
+    function() {
+        Route::get('/parties', [PartyController::class, 'getAllParties']);
+        Route::get('/parties/{id}', [PartyController::class, 'getPartybyId']);
+        Route::get('/parties/{id}', [PartyController::class, 'getPartybyGame']);
+        Route::post('/parties', [PartyController::class, 'createParty'])->middleware('jwt.auth');
+        Route::put('/parties/{id}', [PartyController::class, 'updateParty'])->middleware('jwt.auth');
+        Route::delete('/parties/{id}', [PartyController::class, 'deleteParty'])->middleware('jwt.auth');
     }
 );
