@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\PartyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,5 +41,16 @@ Route::group(
         Route::post('/parties', [PartyController::class, 'createParty'])->middleware('jwt.auth');
         Route::put('/parties/{id}', [PartyController::class, 'updateParty'])->middleware('jwt.auth');
         Route::delete('/parties/{id}', [PartyController::class, 'deleteParty'])->middleware('jwt.auth');
+    }
+);
+
+Route::group(
+    [],
+    function() {
+        Route::get('/games', [GameController::class, 'getAllGames']);
+        Route::get('/games/{id}', [GameController::class, 'getGamebyId']);
+        Route::post('/games', [GameController::class, 'createGame'])->middleware('jwt.auth');
+        Route::put('/games/{id}', [GameController::class, 'updateGame'])->middleware('jwt.auth');
+        Route::delete('/games/{id}', [GameController::class, 'deleteGame'])->middleware('jwt.auth');
     }
 );

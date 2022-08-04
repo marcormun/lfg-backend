@@ -117,6 +117,13 @@ class PartyController extends Controller
             $game_id = $request->input("game_id");
 
             $party = Party::query()->find($id);
+            if (!$party) {
+                return response()->json([
+                    'success' => true,
+                    'message' => "Party not found",
+                    'data' => $party
+                ], 404);
+            }
             
             if(isset($name)){
                 $party->name = $request->input("name");
