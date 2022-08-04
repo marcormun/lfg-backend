@@ -84,6 +84,9 @@ DELETE /games/:id --> Delete a game
 
 # BBDD
 
+![image](https://user-images.githubusercontent.com/102702041/182958166-3f57c789-119a-45de-8e0f-55da5350f344.png)
+
+
 # Author
 
 [Marc Cordón Muñoz](https://tinyurl.com/marcormun)
