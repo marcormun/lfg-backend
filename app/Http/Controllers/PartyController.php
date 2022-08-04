@@ -58,7 +58,7 @@ class PartyController extends Controller
     public function createParty(Request $request)
     {
         try {
-            Log::info("Posting party with name " . $request->get('name'));
+            Log::info("Creating party");
 
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string',
@@ -69,6 +69,7 @@ class PartyController extends Controller
                 return response()->json(
                     [
                         "success" => false,
+                        'message' => "Error creating party",
                         "message" => $validator->errors()
                     ],
                     400
