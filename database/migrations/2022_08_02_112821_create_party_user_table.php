@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_party', function (Blueprint $table) {
+        Schema::create('party_user', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('party_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
-            $table->unique(['user_id','party_id']);
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unique(['party_id','user_id']);
             $table->foreign('party_id')->references('id')->on('parties')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_party');
+        Schema::dropIfExists('party_user');
     }
 };

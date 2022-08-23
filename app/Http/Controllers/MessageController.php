@@ -9,28 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class MessageController extends Controller
 {
-    public function getAllMessages()
-    {
-        try {
-            Log::info("Getting all messages");
-            $messages = Message::query()
-                ->get()
-                ->toArray();
-
-            return response()->json([
-                'success' => true,
-                'message' => "Get all messages retrieved.",
-                'data' => $messages
-            ]);
-        } catch (\Exception $exception) {
-            Log::error("Error getting messages: " . $exception->getMessage());
-            return response()->json([
-                'success' => false,
-                'message' => "Error getting messages"
-            ], 500);
-        }
-    }
-
     public function getMessageById($id)
     {
         try {
@@ -67,6 +45,7 @@ class MessageController extends Controller
                 'party_id' => 'required|integer',
                 'date' => 'required|date'
             ]);
+
             if ($validator->fails()) {
                 return response()->json([
                     'success' => false,
@@ -74,12 +53,14 @@ class MessageController extends Controller
                     'data' => $validator->errors()
                 ], 400);
             }
+
             $newMessage = new Message();
             $newMessage->message = $request->input("message");
             $newMessage->from = $request->input("from");
             $newMessage->party_id = $request->input("party_id");
             $newMessage->date = $request->input("date");
             $newMessage->save();
+
             return response()->json([
                 'success' => true,
                 'message' => "Message created.",
@@ -87,6 +68,7 @@ class MessageController extends Controller
             ]);
         } catch (\Exception $exception) {
             Log::error("Error creating message: " . $exception->getMessage());
+
             return response()->json([
                 'success' => false,
                 'message' => "Error creating message"

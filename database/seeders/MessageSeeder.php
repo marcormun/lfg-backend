@@ -18,17 +18,17 @@ class MessageSeeder extends Seeder
         DB::table('messages')->insert([
             [
                 'message' => 'Hola que tal',
-                'from' => 1,
+                'user_id' => 1,
                 'party_id' => 1,
                 'date' => '2020-01-01'
             ],[
                 'message' => 'Bien y tu?',
-                'from' => 11,
+                'user_id' => 11,
                 'party_id' => 1,
                 'date' => '2020-01-02'
             ],[
                 'message' => 'Bien',
-                'from' => 1,
+                'user_id' => 1,
                 'party_id' => 1,
                 'date' => '2020-01-02'
             ]

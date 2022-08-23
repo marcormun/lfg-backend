@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             GameSeeder::class,
             PartySeeder::class,
             MessageSeeder::class,
-            UserPartySeeder::class
+            PartyUserSeeder::class
         ]);
     }
 }

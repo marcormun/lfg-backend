@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Party;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -209,4 +210,57 @@ class PartyController extends Controller
             ], 500);
         }
     }
+
+    //TODO ADD USER TO PARTY
+    public function joinParty($id){
+    
+        try {
+         Log::info('Add user to party');
+ 
+         $user = User::query()->find($id);
+
+         $user->parties()->attach($id);  
+
+         return response()->json([
+             'success' => true,
+             'message' => 'User joined succesfully',
+             'data' => $user
+         ], 200);
+        } catch (\Exception $exception) {
+
+         Log::error('Error joining user to party: ' . $exception->getMessage());
+
+         return response()->json([
+             'success' => false,
+             'message' => 'Error joining user to party',
+             'data' => $user
+         ], 500);
+        }
+     }
+    //TODO REMOVE USER FROM PARTY
+
+    public function leaveParty($id){
+        try {
+         Log::info('Remove user from party');
+ 
+         $user = User::query()->find($id);
+
+         $user->parties()->detach($id);
+         
+         return response()->json([
+             'success' => true,
+             'message' => 'User left succesfully',
+             'data' => $user
+         ], 200);
+ 
+        } catch (\Exception $exception) {
+         Log::error('Error leaving from party: ' . $exception->getMessage());
+         
+         return response()->json([
+             'success' => false,
+             'message' => 'Error leaving from party',
+             'data' => $user
+         ], 500);
+        }
+     }
 }

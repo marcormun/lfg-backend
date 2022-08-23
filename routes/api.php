@@ -34,35 +34,36 @@ Route::group(
     }
 );
 Route::group(
-    [],
+    ['middleware' => 'jwt.auth'],
     function() {
         Route::get('/parties', [PartyController::class, 'getAllParties']);
         Route::get('/parties/{id}', [PartyController::class, 'getPartybyId']);
         Route::get('/parties/game/{id}', [PartyController::class, 'getPartybyGameId']);
-        Route::post('/parties', [PartyController::class, 'createParty'])->middleware('jwt.auth');
-        Route::put('/parties/{id}', [PartyController::class, 'updateParty'])->middleware('jwt.auth');
-        Route::delete('/parties/{id}', [PartyController::class, 'deleteParty'])->middleware('jwt.auth');
+        Route::post('/parties', [PartyController::class, 'createParty']);
+        Route::put('/parties/{id}', [PartyController::class, 'updateParty']);
+        Route::delete('/parties/{id}', [PartyController::class, 'deleteParty']);
+        Route::post('/joinParty/{id}', [PartyController::class, 'joinParty']);
+        Route::delete('/leaveParty/{id}',[PartyController::class, 'leaveParty']);
     }
 );
 
 Route::group(
-    [],
+    ['middleware' => 'jwt.auth'],
     function() {
         Route::get('/games', [GameController::class, 'getAllGames']);
         Route::get('/games/{id}', [GameController::class, 'getGamebyId']);
-        Route::post('/games', [GameController::class, 'createGame'])->middleware('jwt.auth');
-        Route::put('/games/{id}', [GameController::class, 'updateGame'])->middleware('jwt.auth');
-        Route::delete('/games/{id}', [GameController::class, 'deleteGame'])->middleware('jwt.auth');
+        Route::post('/games', [GameController::class, 'createGame']);
+        Route::put('/games/{id}', [GameController::class, 'updateGame']);
+        Route::delete('/games/{id}', [GameController::class, 'deleteGame']);
     }
 );
 
 Route::group(
-    [],
+    ['middleware' => 'jwt.auth'],
     function(){
-        Route::get('messages', [MessageController::class, 'getAllMessages']);
         Route::get('messages/{id}', [MessageController::class, 'getMessagebyId']);
-        Route::post('messages', [MessageController::class, 'createMessage'])->middleware('jwt.auth');
-        Route::put('messages/{id}', [MessageController::class, 'updateMessage'])->middleware('jwt.auth');
-        Route::delete('messages/{id}', [MessageController::class, 'deleteMessage'])->middleware('jwt.auth');
+        Route::post('messages', [MessageController::class, 'createMessage']);
+        Route::put('messages/{id}', [MessageController::class, 'updateMessage']);
+        Route::delete('messages/{id}', [MessageController::class, 'deleteMessage']);
     }
 );

@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class UserPartySeeder extends Seeder
+class PartyUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class UserPartySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_party')->insert([
+        DB::table('party_user')->insert([
             [
                 'user_id' => 1,
                 'party_id' => 1
