@@ -42,8 +42,8 @@ Route::group(
         Route::post('/parties', [PartyController::class, 'createParty']);
         Route::put('/parties/{id}', [PartyController::class, 'updateParty']);
         Route::delete('/parties/{id}', [PartyController::class, 'deleteParty']);
-        Route::post('/joinParty/{id}', [PartyController::class, 'joinParty']);
-        Route::delete('/leaveParty/{id}',[PartyController::class, 'leaveParty']);
+        Route::post('/parties/joinParty/{id}', [PartyController::class, 'joinParty']);
+        Route::delete('/parties/leaveParty/{id}',[PartyController::class, 'leaveParty']);
     }
 );
 
@@ -61,9 +61,9 @@ Route::group(
 Route::group(
     ['middleware' => 'jwt.auth'],
     function(){
-        Route::get('messages/{id}', [MessageController::class, 'getMessagebyId']);
         Route::post('messages', [MessageController::class, 'createMessage']);
         Route::put('messages/{id}', [MessageController::class, 'updateMessage']);
         Route::delete('messages/{id}', [MessageController::class, 'deleteMessage']);
+        Route::get('messages/party/{id}', [MessageController::class, 'getMessagesByPartyId']);
     }
 );

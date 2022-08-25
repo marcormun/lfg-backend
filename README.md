@@ -58,11 +58,13 @@ PUT /parties/:id --> Update a party
 
 DELETE /parties/:id --> Delete a party
 
+POST /parties/joinParty/:id --> Make a user join a party
+
+DELETE /parties/joinParty/:id --> Make a user leave a party
+
 ### Message
 
-GET /messages --> See all messages
-
-GET /messages/:id --> See a message
+GET /messages/party/:id --> See all messages from a party
 
 POST /messages --> Create a message
 
